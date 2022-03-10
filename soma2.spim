@@ -1,0 +1,24 @@
+.data  
+.text
+	main:
+	
+	li $v0, 5 #Adicionando o primeiro numero
+	syscall 
+	move $t0, $v0 
+	
+	li $v0, 5 #Adicionando o segundo numero
+	syscall
+	move $t1, $v0 
+	
+	add $s0, $t1, $t0 #somar dois numeros
+	
+	li $v0, 1 #printar o numero inteiro
+	move $a0, $s0
+	syscall
+	
+	li $v0, 10 #finalizar o programa
+	syscall
+	
+	
+	
+	
