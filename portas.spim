@@ -1,0 +1,67 @@
+.data
+.text
+	main:
+
+	
+	li $v0, 5 #Adicionando o primeiro numero
+	syscall 
+	move $t0, $v0 
+	
+	li $v0, 5 #Adicionando o segundo numero
+	syscall
+	move $t1, $v0 
+	
+	li $v0, 5 #Adicionando o primeiro numero
+	syscall 
+	move $t2, $v0 
+	
+	add $s0, $t1, $t0 #somar dois numeros
+	
+	sub $s1, $t0, $t1
+	
+	and $s2, $t1, $t0
+	
+	or $s3, $t1, $t0
+	
+	xor $s4, $t1, $t0
+	
+	andi $s5, $t2, 31
+	
+	sllv $s6, $t0, $s5
+	
+	srlv $s7, $t1, $s5
+	 
+	li $v0, 1 #printar o numero inteiro
+	move $a0, $s0
+	syscall
+	
+	li $v0, 1 #printar o numero inteiro
+	move $a0, $s1
+	syscall
+	
+	li $v0, 1 #printar o numero inteiro
+	move $a0, $s2
+	syscall
+	
+	li $v0, 1 #printar o numero inteiro
+	move $a0, $s3
+	syscall
+	
+	li $v0, 1 #printar o numero inteiro
+	move $a0, $s4
+	syscall
+	
+	li $v0, 1 #printar o numero inteiro
+	move $a0, $s5
+	syscall
+	
+	li $v0, 1 #printar o numero inteiro
+	move $a0, $s6
+	syscall
+	
+	li $v0, 1 #printar o numero inteiro
+	move $a0, $s7
+	syscall
+	
+	li $v0, 10 #finalizar o programa
+	syscall
