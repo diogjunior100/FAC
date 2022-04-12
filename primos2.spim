@@ -1,0 +1,54 @@
+.data
+sPrimo: .asciiz "sim\n "
+nPrimo: .asciiz "nao\n "
+nNatural:.asciiz "Entrada invalida.\n "
+#linha:.asciiz "\n"
+	.text
+main:	
+
+	li $v0, 5
+	syscall
+    move $t0, $v0   
+	
+	addi $t1, $zero, 1		
+	addi $t2, $zero, 2	
+	#addi $t8, $zero, 3	
+
+    blt $t0, $zero, invalida
+	beq $t0, $t1, negativo
+	beq $t0, $t2, positivo
+	#beq $t0, $t8, positivo
+	
+	bgt $t0, $t2, for
+
+	for:
+	div $t0, $t2
+	mfhi $t4
+	beq $t4, $zero, negativo	
+	addi $t2, $t2, 1	
+	bgt $t0, $t2, positivo
+
+    negativo:		
+	li $v0,4
+	la $a0, nPrimo
+	syscall
+	
+	li $v0, 10
+    syscall
+
+	positivo:
+    li $v0,4
+	la $a0, sPrimo
+	syscall	
+
+	li $v0, 10
+    syscall
+
+invalida:
+
+    li $v0,4
+	la $a0, nNatural
+	syscall	
+
+	li $v0, 10
+    syscall
