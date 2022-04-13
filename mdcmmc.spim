@@ -1,0 +1,64 @@
+.data
+mensagemInvalida:.asciiz "Entrada invalida.\n "
+newline: .asciiz "\n"
+.text
+
+main:
+	li $v0, 5			#carrega variavel digitada no registrador 'v0'
+	syscall
+	move $s0, $v0
+	move $t0, $s0	#a
+	
+	li $v0, 5
+	syscall
+	move $s1, $v0
+	move $t1, $s1	#b
+	
+	blt $t0, 2, entradainvalida
+	blt $t1, 2, entradainvalida
+		
+	
+while:
+	div  $t0, $t1  
+	mfhi $t2       
+	move $t0, $t1  
+	move $t1, $t2 
+	
+	bne $t1, $zero, while
+	
+mmc:
+	div $s1, $t0
+	mflo $t3
+	mul $s4, $s0, $t3
+
+#imprimemmc:
+	
+	#li $v0, 1 #printar o numero inteiro
+	#move $a0, $s4
+	#syscall	
+
+imprimemdc:
+	li $v0, 1 #printar o numero inteiro
+	move $a0, $t0
+	syscall
+		
+quebra:
+	li $v0, 4
+	la $a0, newline
+	syscall
+	
+imprimemmc:
+	
+	li $v0, 1 #printar o numero inteiro
+	move $a0, $s4
+	syscall	
+	
+	li $v0, 10
+	syscall
+entradainvalida:
+	li $v0, 4
+	la $a0, mensagemInvalida
+	syscall
+	
+	li $v0, 10
+	syscall
